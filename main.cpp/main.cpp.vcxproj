@@ -152,6 +152,7 @@
     <ClCompile Include="photo_collection.cpp" />
     <ClCompile Include="trip.cpp" />
     <ClCompile Include="string.cpp" />
+    <ClCompile Include="trip_collection.cpp" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="photo_collection.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="trip.h" />
+    <ClInclude Include="trip_collection.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

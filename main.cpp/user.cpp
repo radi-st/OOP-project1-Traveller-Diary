@@ -15,16 +15,29 @@ User::User(const User& other):
 	m_password(other.m_password),
 	m_email(other.m_email) {}
 
+String User::username() const {
+	return m_username;
+}
+String User::password() const {
+	return m_password;
+}
+String User::email() const {
+	return m_email;
+}
+
+
 std::istream& operator>>(std::istream& in, User& user) {
 	in >> user.m_username;
 	user.validate_username();
 	in >> user.m_password;
 	in >> user.m_email;
+	in >> user.m_trips;
 	return in;
 }
 
 std::ostream& operator<<(std::ostream& out, const User& user) {
-	out << user.m_username<<" "<< user.m_password<<" "<< user.m_email;
+	out << user.m_username<<" "<< user.m_password<<" "<< user.m_email<<'\n';
+	out << user.m_trips;
 	return out;
 }
 

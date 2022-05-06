@@ -7,17 +7,21 @@
 class Trip {
 public:
 	Trip() = default;
+	Trip(const Trip& other);
+	Trip& operator=(const Trip& other);
 	friend std::istream& operator>>(std::istream& in, Trip& trip);
+	friend std::ostream& operator<<(std::ostream& out, const Trip& trip);
+	String destination() const;
 
 private:
 	void validate_time_period();
 	void validate_grade();
-	void validate_photo(const String& photo_name);
+	void swap(Trip& other);
 
 	String m_destination{};
 	Date m_begin_date{};
 	Date m_end_date{};
 	unsigned m_grade{}; // 1-5
 	String m_comment{};
-	PhotoCollection photos;
+	PhotoCollection m_photos;
 };

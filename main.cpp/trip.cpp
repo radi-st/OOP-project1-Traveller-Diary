@@ -6,29 +6,34 @@ void Trip::validate_time_period() {
 void Trip::validate_grade() {
 	assert(m_grade >= 1 && m_grade <= 5);
 }
-void Trip::validate_photo(const String& photo_name) {
-	unsigned len = photo_name.size();
-	assert(len > 4);
-
-	bool ends_with_png{ photo_name[len - 4] == '.' && photo_name[len - 3] == 'p'
-		&& photo_name[len - 2] == 'n' && photo_name[len - 1] == 'g' };
-
-	bool ends_with_jpeg{ photo_name[len - 5] == '.' && photo_name[len - 4] == 'j'
-		&& photo_name[len - 3] == 'p' && photo_name[len - 2] == 'e' && photo_name[len - 1] == 'g' };
-
-	bool has_valid_symbols = true;
-
-	for (unsigned i; i < len; i++) {
-		if (!((photo_name[i] >= 'a' && photo_name[i] <= 'z') ||
-			(photo_name[i] >= 'A' && photo_name[i] <= 'Z') || photo_name[i] == '_')) {
-			has_valid_symbols = false;
-			break;
-		}
-	}
-	assert((ends_with_png || ends_with_jpeg) && has_valid_symbols);
+String Trip::destination()const {
+	return m_destination;
 }
-
 std::istream& operator>>(std::istream& in, Trip& trip) {
-	in >> trip.m_destination >> trip.m_begin_date >> trip.m_end_date >> trip.m_grade >> trip.m_comment >> trip.photos;
+	in >> trip.m_destination >> trip.m_begin_date >> trip.m_end_date;
+	trip.validate_time_period();
+	in >> trip.m_grade;
+	trip.validate_grade();
+	getline(in, trip.m_comment); 
+	in>> trip.m_photos;
+	return in;
 }
 
+std::ostream& operator<<(std::ostream& out, const Trip& trip) {
+	out << trip.m_destination << " " << trip.m_begin_date << " " << trip.m_end_date << '\n';
+	out << trip.m_comment << '\n';
+	out << trip.m_photos << '\n';
+	return out;
+}
+
+
+Trip::Trip(const Trip& other):
+	m_destination(other.m_destination), m_begin_date(other.m_begin_date), m_end_date(other.m_end_date),
+	m_grade(other.m_grade), m_comment(other.m_comment)
+{
+
+}
+Trip& Trip::operator=(const Trip& other);
+void Trip::swap(Trip& other) {
+
+}

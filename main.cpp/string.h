@@ -17,9 +17,10 @@ public:
 	void concat_char(char c);
 	unsigned size() const;
 	const char* data() const;
-	friend std::istream& getline(std::istream& in, String& str, char delim);
-private:
+	friend std::istream& getline(std::istream& in, String& str, char delim='\n');
 	void swap(String& other);
+private:
+	
 	void resize();
 
 	char* m_data{ nullptr };

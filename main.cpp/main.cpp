@@ -1,5 +1,6 @@
 ﻿#include "user.h"
 #include "string.h"
+#include "trip_collection.h"
 #include <iostream>
 #include <fstream>
 

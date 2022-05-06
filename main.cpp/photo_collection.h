@@ -11,6 +11,7 @@ public:
 	friend std::istream& operator>>(std::istream& in, PhotoCollection& photo_col);
 	unsigned size() const;
 private:
+	void validate_photo(const String& photo_name);
 	void resize();
 	String* m_data{nullptr};
 	unsigned m_size{};
