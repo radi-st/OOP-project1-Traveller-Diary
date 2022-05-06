@@ -36,7 +36,9 @@ void User::validate_username() {
 			(m_username[i] >= '0' && m_username[i] <= '9')))
 		{
 			valid_username = false;
+			break;
 		}
-		assert(valid_username && "Username is invalid!");
+		
 	}
+	assert(valid_username && "Username is invalid!");
 }

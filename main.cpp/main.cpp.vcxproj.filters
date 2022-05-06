@@ -30,6 +30,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="photo_collection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user.h">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="date.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="photo_collection.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
