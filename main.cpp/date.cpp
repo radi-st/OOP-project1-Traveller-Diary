@@ -24,7 +24,7 @@ std::istream& operator>>(std::istream& in, Date& date) {
 	return in;
 }
 
-std::ostream& operator<<(std::ostream& out, Date& date) {
+std::ostream& operator<<(std::ostream& out, const Date& date) {
 	return out << date.year()<< "-"<<date.month()<<"-"<<date.day();
 }
 
@@ -36,6 +36,12 @@ unsigned Date::month() const {
 }
 unsigned Date::day() const{
 	return m_day;
+}
+
+void Date::swap(Date& other) {
+	std::swap(m_year, other.m_year);
+	std::swap(m_month, other.m_month);
+	std::swap(m_day, other.m_day);
 }
 
 bool operator< (const Date& lhs, const Date& rhs) {

@@ -45,6 +45,28 @@ std::ostream& operator<<(std::ostream& out, const PhotoCollection& photo_col) {
 	return out;
 }
 
+PhotoCollection::PhotoCollection(const PhotoCollection& other): 
+	m_capacity(other.m_capacity),
+	m_data(new String[m_capacity]),
+	m_size(other.m_size)
+{
+	std::copy(other.m_data, other.m_data+other.m_size, m_data);
+}
+PhotoCollection& PhotoCollection::operator=(const PhotoCollection& other) {
+	PhotoCollection temp{ other };
+	swap(temp);
+	return *this;
+}
+void PhotoCollection::swap(PhotoCollection& other) {
+	std::swap(m_capacity, other.m_capacity);
+	std::swap(m_size, other.m_size);
+	std::swap(m_data, other.m_data);
+}
+
+
+
+
+
 void PhotoCollection::validate_photo(const String& photo_name) {
 	unsigned len = photo_name.size();
 	assert(len > 4);

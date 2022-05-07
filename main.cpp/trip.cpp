@@ -27,13 +27,21 @@ std::ostream& operator<<(std::ostream& out, const Trip& trip) {
 }
 
 
-Trip::Trip(const Trip& other):
+Trip::Trip(const Trip& other) :
 	m_destination(other.m_destination), m_begin_date(other.m_begin_date), m_end_date(other.m_end_date),
-	m_grade(other.m_grade), m_comment(other.m_comment)
-{
+	m_grade(other.m_grade), m_comment(other.m_comment), m_photos(other.m_photos) {}
 
+Trip& Trip::operator=(const Trip& other) {
+	Trip temp{ other };
+	swap(temp);
+	return *this;
 }
-Trip& Trip::operator=(const Trip& other);
-void Trip::swap(Trip& other) {
 
+void Trip::swap(Trip& other) {
+	m_destination.swap(other.m_destination);
+	m_begin_date.swap(other.m_begin_date);
+	m_end_date.swap(other.m_end_date);
+	std::swap(m_grade, other.m_grade);
+	m_comment.swap(other.m_comment);
+	m_photos.swap(other.m_photos);
 }

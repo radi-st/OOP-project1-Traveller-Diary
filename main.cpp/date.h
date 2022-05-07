@@ -9,6 +9,7 @@ public:
 	unsigned month() const;
 	unsigned day() const;
 	friend std::istream& operator>>(std::istream& in, Date& date);
+	void swap(Date& other);
 private:
 	bool isValid();
 	unsigned m_year{};
@@ -17,4 +18,4 @@ private:
 };
 
 bool operator< (const Date& lhs, const Date& rhs);
-std::ostream& operator<<(std::ostream& out, Date& date);
+std::ostream& operator<<(std::ostream& out, const Date& date);
