@@ -70,6 +70,20 @@ char& String::operator[](unsigned index) {
 	return m_data[index];
 }
 
+String& operator+(const String& lhs, const String& rhs) {
+	char* concated = new char[rhs.size() + lhs.size() + 1];
+	strcpy(concated, lhs.data());
+	strcat(concated, rhs.data());
+
+	String result{ concated };
+	delete[] concated;
+	return result;
+}
+
+bool operator == (const String& lhs, const String& rhs) {
+	return strcmp(lhs.data(), rhs.data())==0;
+}
+
 String::~String() {
 	delete[] m_data;
 }

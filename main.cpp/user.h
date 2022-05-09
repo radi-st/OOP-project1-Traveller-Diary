@@ -15,6 +15,7 @@ public:
 	
 	friend std::istream& operator>>(std::istream& in, User& user);
 	friend std::ostream& operator<<(std::ostream& out, const User& user);
+
 private:
 	void validate_username();
 
@@ -23,3 +24,4 @@ private:
 	String m_email{};
 	TripCollection m_trips;
 };
+

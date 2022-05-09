@@ -31,7 +31,7 @@ std::istream& operator>>(std::istream& in, User& user) {
 	user.validate_username();
 	in >> user.m_password;
 	in >> user.m_email;
-	in >> user.m_trips;
+	in >> user.m_trips;///////
 	return in;
 }
 

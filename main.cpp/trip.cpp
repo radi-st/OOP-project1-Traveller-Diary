@@ -9,6 +9,9 @@ void Trip::validate_grade() {
 String Trip::destination()const {
 	return m_destination;
 }
+unsigned Trip::grade() const {
+	return m_grade;
+}
 std::istream& operator>>(std::istream& in, Trip& trip) {
 	in >> trip.m_destination >> trip.m_begin_date >> trip.m_end_date;
 	trip.validate_time_period();

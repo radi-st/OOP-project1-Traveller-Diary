@@ -11,7 +11,7 @@ public:
 	friend std::istream& operator>>(std::istream& in, Date& date);
 	void swap(Date& other);
 private:
-	bool isValid();
+	bool is_valid();
 	unsigned m_year{};
 	unsigned m_month{};
 	unsigned m_day{};

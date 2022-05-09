@@ -1,11 +1,11 @@
 #include "date.h"
 
-bool Date::isValid() {
+bool Date::is_valid() {
 	return (m_year>1900 && m_year<2023) && (m_month > 0 && m_month <= 12) && (m_day > 0 && m_day <= 31);
 }
 Date::Date(unsigned year, unsigned month, unsigned day) : 
 	m_year(year), m_month(month), m_day(day) {
-	assert(isValid() && "The date is invalid");
+	assert(is_valid() && "The date is invalid");
 }
 
 std::istream& operator>>(std::istream& in, Date& date) {

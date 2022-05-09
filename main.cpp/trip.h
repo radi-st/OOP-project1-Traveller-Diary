@@ -12,6 +12,7 @@ public:
 	friend std::istream& operator>>(std::istream& in, Trip& trip);
 	friend std::ostream& operator<<(std::ostream& out, const Trip& trip);
 	String destination() const;
+	unsigned grade() const;
 
 private:
 	void validate_time_period();
