@@ -14,7 +14,7 @@ public:
 	friend std::istream& operator>>(std::istream& in,String& str);
 	const char& operator[](unsigned index) const;
 	char& operator[](unsigned index);
-	friend String& operator+(const String& lhs,const String& rhs);
+	friend String operator+(const String& lhs,const char* rhs);
 	void concat_char(char c);
 	unsigned size() const;
 	const char* data() const;

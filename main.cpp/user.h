@@ -1,6 +1,7 @@
 #pragma once
 #include "string.h"
 #include <iostream>
+#include <fstream>
 #include "trip_collection.h"
 
 class User {
@@ -12,7 +13,8 @@ public:
 	String username() const;
 	String password() const;
 	String email() const;
-	
+	TripCollection load_trips() const;
+
 	friend std::istream& operator>>(std::istream& in, User& user);
 	friend std::ostream& operator<<(std::ostream& out, const User& user);
 
@@ -22,6 +24,6 @@ private:
 	String m_username{};
 	String m_password{};
 	String m_email{};
-	TripCollection m_trips;
+
 };
 

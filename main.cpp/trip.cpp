@@ -17,13 +17,14 @@ std::istream& operator>>(std::istream& in, Trip& trip) {
 	trip.validate_time_period();
 	in >> trip.m_grade;
 	trip.validate_grade();
+	in.ignore();
 	getline(in, trip.m_comment); 
 	in>> trip.m_photos;
 	return in;
 }
 
 std::ostream& operator<<(std::ostream& out, const Trip& trip) {
-	out << trip.m_destination << " " << trip.m_begin_date << " " << trip.m_end_date << '\n';
+	out << trip.m_destination << " " << trip.m_begin_date << " " << trip.m_end_date <<" "<<trip.m_grade<<'\n';
 	out << trip.m_comment << '\n';
 	out << trip.m_photos << '\n';
 	return out;

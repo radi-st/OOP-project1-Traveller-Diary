@@ -13,9 +13,9 @@ std::istream& operator>>(std::istream& in, Date& date) {
 	char year[5];
 	char month[3];
 	char day[3];
-	in.getline(year,'-');
-	in.getline(month, '-');
-	in.getline(day, ' ');
+	in.getline(year,5,'-');
+	in.getline(month,3, '-');
+	in.getline(day, 3,' ');
 
 	date.m_year = atoi(year);
 	date.m_month = atoi(month);

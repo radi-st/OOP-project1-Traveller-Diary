@@ -1,4 +1,4 @@
-#include "user.h"
+﻿#include "user.h"
 
 User::User(const String& username, const String& password, const String& email) : 
 	m_username(username), m_password(password), m_email(email) {
@@ -25,21 +25,37 @@ String User::email() const {
 	return m_email;
 }
 
+TripCollection User::load_trips() const {
+	std::ifstream user_db {(m_username + ".db").data()};
+	TripCollection tripCol;
+
+	assert(user_db);
+
+	user_db >> tripCol;
+	return tripCol;
+}
 
 std::istream& operator>>(std::istream& in, User& user) {
 	in >> user.m_username;
 	user.validate_username();
 	in >> user.m_password;
 	in >> user.m_email;
-	in >> user.m_trips;///////
 	return in;
 }
 
 std::ostream& operator<<(std::ostream& out, const User& user) {
 	out << user.m_username<<" "<< user.m_password<<" "<< user.m_email<<'\n';
-	out << user.m_trips;
 	return out;
 }
+
+
+/*
+⚠
+Beware, you are about to see something scary !!!
+Enter at your own risk
+⚠
+*/
+
 
 void User::validate_username() {
 	bool valid_username{ true };

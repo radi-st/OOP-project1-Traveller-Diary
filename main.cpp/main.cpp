@@ -5,7 +5,7 @@
 #include <fstream>
 #include <cassert>
 
-User& regiser_user() {
+User regiser_user() {
     String username, password, email;
     std::cout << "Username: ";
     std::cin >> username;
@@ -17,12 +17,13 @@ User& regiser_user() {
 
     std::ofstream users_database{ "users.db",std::ios::app };
     assert(users_database);
-    users_database << User{ username,password,email };
-    std::ifstream user_db{(username + String{".db"}).data()};
+    users_database <<user;
+    String user_filename{ username + ".db" };
+    std::ofstream user_db{user_filename.data()};
     return user;
 }
 
-User& login() {
+User login() {
     String username, password;
     std::cout << "Username: ";
     std::cin >> username;
@@ -41,9 +42,28 @@ User& login() {
 }
 
 void search_destination(const String& dest) {
-
+    std::ifstream users_db{ "users.db" };
+    assert(users_db);
+    User user;
+    unsigned times_visited = 0;
+    double sum_grades = 0;
+    while (users_db >> user) {
+        TripCollection tripCol = user.load_trips();
+        unsigned size = tripCol.size();
+        for (unsigned i = 0; i < size; i++) {
+            if (tripCol[i].destination() == dest) {
+                times_visited++;
+                sum_grades += tripCol[i].grade();
+                std::cout << tripCol[i];
+            }
+        }
+    }
+    if (!times_visited) {
+        std::cout << "Nobody has visited this destination.";
+        return;
+    }
+    std::cout << "Average grade: " << sum_grades / times_visited;
 }
-
 
 int main()
 {
@@ -52,15 +72,19 @@ int main()
     std::cout << "Login or Register user:\n";
     std::cout << "(l|r): ";
     std::cin >> command;
-    if (command == 'l') {
+    std::cin.ignore();
+    assert(command == 'r' || command == 'l' && "Incorrect command");
+    if (command == 'r') {
         current_user = regiser_user();
     }
-    else if (command == 'r') {
+    else if (command == 'l') {
         current_user = login();
     }
     std::cout << "Would you like to see reviews for a destinations?\n";
-    std::cout << "(y|n)";
+    std::cout << "(y|n): ";
     std::cin >> command;
+    std::cin.ignore();
+    assert(command == 'y' || command == 'n' && "Incorrect command");
     if (command == 'n') {
         std::cout << "Have a nice day! :)";
         return 0;
@@ -69,7 +93,7 @@ int main()
         String destination;
         std::cout << "Input destination: ";
         std::cin >> destination;
-        void search_destination(destination);
+        search_destination(destination);
     }
     return 0;
 }

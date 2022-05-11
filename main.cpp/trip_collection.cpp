@@ -16,19 +16,44 @@ unsigned TripCollection::size() const {
 	return m_size;
 }
 
+TripCollection::TripCollection(const TripCollection& other) :
+	m_capacity(other.m_capacity),
+	m_data(new Trip[m_capacity]),
+	m_size(other.m_size)
+{
+	std::copy(other.m_data, other.m_data + other.m_size, m_data);
+}
+TripCollection& TripCollection::operator=(const TripCollection& other) {
+	TripCollection temp{ other };
+	swap(temp);
+	return *this;
+}
+
+void TripCollection::swap(TripCollection& other) {
+	std::swap(m_capacity, other.m_capacity);
+	std::swap(m_size, other.m_size);
+	std::swap(m_data, other.m_data);
+}
+
 Trip& TripCollection::operator[](unsigned index) {
 	assert(index < m_size);
 	return m_data[index];
 }
-Trip TripCollection::operator[](unsigned index) const {
+const Trip& TripCollection::operator[](unsigned index) const {
 	assert(index < m_size);
 	return m_data[index];
 }
 
 std::istream& operator>>(std::istream& in, TripCollection& trip_col) {
-	Trip trip;
-	while (in >> trip) {
-		trip_col.add_trip(trip);
+	int begin_pos = in.tellg();
+	in.seekg(0, std::ios::end);
+	if (in.tellg() != begin_pos) {
+		in.seekg(0, std::ios::beg);
+		while (in) {
+			Trip trip;
+			in >> trip;
+			trip_col.add_trip(trip);
+		}
 	}
 	return in;
 }

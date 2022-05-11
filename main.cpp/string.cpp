@@ -4,7 +4,7 @@ String::String(const char* other){
 	int len = std::strlen(other);
 	m_data = new char[len+1];
 	m_size = len;
-	m_capacity = len;
+	m_capacity = len + 1;
 	strcpy(m_data, other);
 }
 
@@ -45,6 +45,7 @@ void String::concat_char(char c) {
 }
 
 std::istream& getline(std::istream& in, String& str, char delim) {
+	str = "";
 	char c;
 	while (in.get(c) && c != delim && c!='\n') {
 		str.concat_char(c);
@@ -70,10 +71,10 @@ char& String::operator[](unsigned index) {
 	return m_data[index];
 }
 
-String& operator+(const String& lhs, const String& rhs) {
-	char* concated = new char[rhs.size() + lhs.size() + 1];
+String operator+(const String& lhs, const char* rhs) {
+	char* concated = new char[strlen(rhs) + lhs.size() + 1];
 	strcpy(concated, lhs.data());
-	strcat(concated, rhs.data());
+	strcat(concated, rhs);
 
 	String result{ concated };
 	delete[] concated;
