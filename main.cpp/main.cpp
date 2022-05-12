@@ -55,7 +55,6 @@ void search_destination(const String& dest) {
             if (tripCol[i].destination() == dest) {
                 times_visited++;
                 sum_grades += tripCol[i].grade();
-                //std::cout << '\n'<<tripCol[i];
                 output_without_dest(std::cout, tripCol[i]);
             }
         }
