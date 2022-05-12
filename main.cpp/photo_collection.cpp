@@ -1,4 +1,4 @@
-#include "photo_collection.h"
+﻿#include "photo_collection.h"
 
 void PhotoCollection::resize() {
 	m_capacity = m_capacity * 2 + 1;
@@ -72,7 +72,12 @@ void PhotoCollection::swap(PhotoCollection& other) {
 }
 
 
-
+/*
+⚠
+Beware, you are about to see something scary !!!
+Enter at your own risk
+⚠
+*/
 
 
 void PhotoCollection::validate_photo(const String& photo_name) const{

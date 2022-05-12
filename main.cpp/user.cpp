@@ -49,14 +49,6 @@ std::ostream& operator<<(std::ostream& out, const User& user) {
 }
 
 
-/*
-⚠
-Beware, you are about to see something scary !!!
-Enter at your own risk
-⚠
-*/
-
-
 void User::validate_username() {
 	bool valid_username{ true };
 	for (unsigned i = 0; i < m_username.size(); i++) {

@@ -29,7 +29,13 @@ std::ostream& operator<<(std::ostream& out, const Trip& trip) {
 	out << trip.m_photos << '\n';
 	return out;
 }
-
+std::ostream& output_without_dest(std::ostream& out, const Trip& trip) {
+	out <<'\n'<< trip.m_begin_date << " " << trip.m_end_date;
+	out<<"\nGrade:" << trip.m_grade << '\n';
+	out << trip.m_comment << '\n';
+	out << trip.m_photos << '\n';
+	return out;
+}
 
 Trip::Trip(const Trip& other) :
 	m_destination(other.m_destination), m_begin_date(other.m_begin_date), m_end_date(other.m_end_date),

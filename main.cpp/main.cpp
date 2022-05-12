@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <iomanip>
 
 User regiser_user() {
     String username, password, email;
@@ -54,7 +55,8 @@ void search_destination(const String& dest) {
             if (tripCol[i].destination() == dest) {
                 times_visited++;
                 sum_grades += tripCol[i].grade();
-                std::cout << tripCol[i];
+                //std::cout << '\n'<<tripCol[i];
+                output_without_dest(std::cout, tripCol[i]);
             }
         }
     }
@@ -62,7 +64,7 @@ void search_destination(const String& dest) {
         std::cout << "Nobody has visited this destination.";
         return;
     }
-    std::cout << "Average grade: " << sum_grades / times_visited;
+    std::cout << "\nAverage grade: " << std::setprecision(2)<< sum_grades / times_visited<<'\n';
 }
 
 int main()
@@ -80,7 +82,7 @@ int main()
     else if (command == 'l') {
         current_user = login();
     }
-    std::cout << "Would you like to see reviews for a destinations?\n";
+    std::cout << "Would you like to see reviews for a destination?\n";
     std::cout << "(y|n): ";
     std::cin >> command;
     std::cin.ignore();

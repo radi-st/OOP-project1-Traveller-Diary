@@ -9,7 +9,7 @@ public:
 	User() = default;
 	User(const String& username, const String& password, const String& email);
 	User(const char* username, const char* password, const char* email);
-	User(const User& other); // mai nqma nujda
+	User(const User& other);
 	String username() const;
 	String password() const;
 	String email() const;
